@@ -1,5 +1,5 @@
 var express = require('express');
-var DataStore = require('./DataStore-memory').DataStore;
+var DataStore = require('./DataStore-mongo').DataStore;
 var EventLogger = require('./EventLogger').EventLogger;
 var uuid = require('node-uuid');
 
