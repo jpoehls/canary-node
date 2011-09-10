@@ -1,0 +1,52 @@
+<%
+  var site = "http://localhost:3000";
+  var token = token || "RANDOM TOKEN";
+
+  var monitorUrl = site + "/data/" + token;
+  var jsUrl = site + "/js/canary.js";
+%>
+
+<div id="main">
+  <div id="steps">
+    <p class="info">Include the following scripts on your pages:</p>
+    <div class="action r s">
+      <code>&lt;script type="text/javascript" src="<%= jsUrl %>"&gt;&lt;/script&gt;<br/>
+            &lt;script type="text/javascript"&gt;try{Canary.init('<%= token %>');}catch(err){}&lt;/script&gt;</code>
+      <div class="help"></div>
+      <div class="tip r">
+        <p>Put this in your html's head. For best results, you should put it before any other scripts.</p>
+        <p>Canary hooks into <code>window.onerror</code> and logs unhandled exceptions automatically.</p>
+        <p>Exceptions will still bubble up to the browser.</p>
+      </div>
+    </div>
+
+    <p class="info">Whenever you want to log an error, call:</p>
+    <div class="action r s">
+      try { /* ... */ }
+      catch (err) { <code>Canary.error(err);</code> }
+      <div class="help"></div>
+      <div class="tip r">
+        <p>Use <code>Canary.warn(error);</code> to log as a warning instead.</p>
+      </div>
+    </div>
+  
+    <p class="info">Monitor your logs at:</p>
+    <div class="action r s">
+      <a href="<%= monitorUrl %>"><%= monitorUrl %></a>
+      <div class="help"></div>
+      <div class="tip">Anyone can see your logs.</div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.help').click(function(){
+    $(this).siblings('.tip').toggle();
+  });
+  $(document).keydown(function(e){
+    if (e.keyCode == 27) { $('.tip').hide(); }
+    return true;
+  });
+});
+</script>

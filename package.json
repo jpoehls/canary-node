@@ -1,0 +1,15 @@
+{
+  "name": "canary"
+ ,"version": "0.0.1"
+ ,"private": true
+ ,"dependencies": {
+    "express": ">=2.4.3"
+   ,"jade": ">=0.0.1"
+   ,"mongodb": ">=0.9.6-7"
+   ,"expresso": ">=0.0.1"
+   ,"should": ">=0.0.1"
+   ,"vows": ">=0.0.1"
+   ,"ejs": ">=0.0.1"
+   ,"node-uuid": ">=0.0.1"
+  }
+}

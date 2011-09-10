@@ -1,0 +1,26 @@
+body{background:#222;font-family:verdana, arial;font-size:80%;color:#fff;}
+img{border:0;}
+h1{margin:0;}
+pre{font-size: 1.3em; overflow-x: scroll;}
+
+table.vert th { text-align: right; }
+
+#main{width:960px;margin:0 auto;overflow:visible;}
+#steps{padding:4px;font-size:1.2em;}
+
+
+.graphContainer{width:900px;margin:5px auto;background:#333;padding:30px;border:1px solid #444;}
+.graphContainer > div {height:200px;}
+#totalContainer{overflow:auto;}
+#totalContainer .button{float:right;}
+#total{height:25px;font-size:1.5em;float:left;}
+#reportTip{position:absolute;background:#ddd;padding:5px;border:1px solid #555;display:none;color:#222;}
+
+.button{padding:6px 10px;background: -webkit-gradient(linear, left top, left bottom, from(#fbfcfb), to(#9d9e9d));background: -moz-linear-gradient(#fbfcfb, #9d9e9d);background-color: #c0c2c0;text-decoration:none;color:#444;font-weight:bold;}
+.button:hover{color:#111;}
+.action{text-align:center;border:1px solid #444;background:#333;padding:25px;margin-bottom:40px;font-size:1.1em;}
+.action a{color:#fff;text-decoration:none;}
+.tip{border:1px solid #222;margin-top:15px;padding-top:15px;color:#ccc;background:#444;padding:10px 20px;display:none;}
+.help{float:right;width:16px;height:16px;background:url('help.png') no-repeat;cursor:pointer;}
+.r{-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius:4px;}
+.s{moz-box-shadow: 1px 1px 3px #000;-webkit-box-shadow: 1px 1px 3px #000;box-shadow: 1px 1px 3px #000;}

@@ -1,0 +1,45 @@
+<h1>Event Details</h1>
+<p>
+	<a href="/data/<%= token%>">Back to the dashboard</a>
+</p>
+<p><b>Last Occured On:</b> <%= event.last_time %></p>
+
+<h2>Common Info</h2>
+<table class='vert' border="1">
+	<tr>
+		<th>Level</th>
+		<td><%= event.level %></td>
+	</tr>
+<% for (var prop in event.common) { if (!event.common.hasOwnProperty(prop)) continue; %>
+	<tr>
+		<th><%= prop %></th>
+		<td><%= event.common[prop] %></td>
+	</tr>
+<% } %>
+</table>
+
+<h2>Occurances</h2>
+<table border="1">
+	<tr>
+		<th>Time</th>
+		<th>Details</th>
+	</tr>
+	<% for (var i=0; i<event.occurances.length; i++) { var o=event.occurances[i]; %>
+	<tr>
+		<td><%= o.time %></td>
+		<td>
+			<table class='vert' border="1">
+				<% for (var prop in o.details) { if (!o.details.hasOwnProperty(prop)) continue; %>
+				<tr>
+					<th><%= prop %></th>
+					<td><%= o.details[prop] %></td>
+				</tr>
+				<% } %>
+			</table>
+		</td>
+	</tr>
+	<% } %>
+</table>
+
+<h2>Raw Event</h2>
+<pre><%= eventRaw %></pre>

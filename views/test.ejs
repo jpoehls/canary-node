@@ -1,0 +1,35 @@
+<%
+  var code = "4e6a29f68fcd521fd8000066";
+%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Canary</title>
+    <script type="text/javascript" src="/js/canary.js"></script>
+    <script type="text/javascript">try{Canary.init('<%= code %>');}catch(err){}</script>
+    <script>
+      function logError() {
+        Canary.error('Manually logged error!');
+      }
+
+      function logWarning() {
+        Canary.warn('Manually logged warning!');
+      }
+      
+      function throwUnhandled() {
+        throw new Error("Manually thrown exception!");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Canary - <i>errors? what errors?</i></h1>
+    <div id="container">
+      <p><input type='button' value='Log Error' onclick='javascript:logError();' /></p>
+      <p><input type='button' value='Log Warning' onclick='javascript:logWarning();' /></p>
+      <p><input type='button' value='Throw Unhandled Exception' onclick='javascript:throwUnhandled();' /></p>
+      <p>
+        <a href="/data/<%= code %>">View the logs</a>
+      </p>
+    </div>
+  </body>
+</html>
