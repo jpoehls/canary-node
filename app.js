@@ -38,12 +38,37 @@ app.get('/', function(req, res) {
 // LOG DASHBOARD - show collected log entries
 app.get('/data/:token', function(req, res) {
 	var dataStore = new DataStore();
-	dataStore.getEventSummaries(req.params.token, function(err, events) {
-		console.log(events);
+	var counter = 0;
+
+	var all_events = null;
+	var top_events = null;
+
+	function sendResponse() {
+		if (counter !== 2) return;
+
 		res.render('dashboard', {
 			token: req.params.token,
-			events: events
+			events: all_events,
+			top_events: top_events
 		});
+	}
+
+	dataStore.getAllEvents(req.params.token, function(err, events) {
+
+		if (err) res.send(500, err);
+		
+		all_events = events;
+		counter++;
+		sendResponse();
+	});
+
+	dataStore.getTopEvents(req.params.token, function(err, events) {
+
+		if (err) res.send(500, err);
+		
+		top_events = events;
+		counter++;
+		sendResponse();
 	});
 });
 
@@ -51,11 +76,17 @@ app.get('/data/:token', function(req, res) {
 app.get('/data/:token/:hash', function(req, res) {
 	var dataStore = new DataStore();
 	dataStore.getEvent(req.params.token, req.params.hash, function(err, event) {
-		res.render('details', {
-			token: req.params.token,
-			event: event,
-			eventRaw: JSON.stringify(event, null, '    ')
-		})
+
+		if (event) {
+			res.render('details', {
+				token: req.params.token,
+				event: event,
+				eventRaw: JSON.stringify(event, null, '    ')
+			})
+		}
+		else {
+			res.send('Event does not exist.');
+		}
 	});
 });
 

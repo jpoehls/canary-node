@@ -65,7 +65,36 @@ ds.prototype.addEvent = function(event, callback) {
   }
 };
 
-ds.prototype.getEventSummaries = function(token, callback) {
+ds.prototype.getAllEvents = function(token, callback) {
+  if (!callback) return; // if no callback, do nothing
+
+  try {
+    // guard against sucky input
+    if (!token) throw new Error('token parameter is required');
+
+    var results = [];
+    for (var i=0; i<this.cache.length; i++) {
+      var ev = this.cache[i];
+      if (ev.token === token) {
+        results.push({
+          hash: ev.hash,
+          total: ev.occurances.length,
+          type: ev.common.type,
+          message: ev.common.message,
+          last_time: ev.last_time,
+          level: ev.level
+        });
+      }
+    }
+
+    callback(null, results);
+  }
+  catch (err) {
+    callback(err);
+  }
+}
+
+ds.prototype.getTopEvents = function(token, callback) {
   if (!callback) return; // if no callback, do nothing
 
   try {

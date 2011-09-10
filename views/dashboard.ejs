@@ -2,35 +2,32 @@
 
 <p><img height="100" width="600" alt="48hr activity graph" /></p>
 
-<h2>Top events by urgency rating</h2>
+<h2>Top Events</h2>
 
 <table border="1">
     <thead>
         <tr>
-            <th>Total</th>
+            <th>Occurances</th>
+            <th>Level</th>
             <th>Type</th>
             <th>Message</th>
-            <th>Last Occurance</th>
-            <th>Level</th>
+            <th>Last Time</th>
         </tr>
     </thead>
-</table>
-
-<h2>Recent events</h2>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Total</th>
-            <th>Type</th>
-            <th>Message</th>
-            <th>Last Occurance</th>
-            <th>Level</th>
+    <tbody>
+    <% for (var i=0; i<events.length; i++) { var ev = events[i]; %>
+        <tr onclick='window.location.href="/data/<%= token %>/<%= ev.hash %>"' style='cursor: pointer;'>
+            <td><%= ev.total %></td>
+            <td><%= ev.level %></td>
+            <td><%= ev.type || "-" %></td>
+            <td><%= ev.message || "-" %></td>
+            <td><%= ev.last_time %></td>
         </tr>
-    </thead>
+    <% } %>
+    </tbody>
 </table>
 
-<h2>All events</h2>
+<h2>All Events</h2>
 
 <table border="1">
     <thead>
